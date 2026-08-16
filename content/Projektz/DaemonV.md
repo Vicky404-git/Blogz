@@ -1,12 +1,8 @@
-# Why I Made DaemonV
-
-```yaml
 ---
 title: "Why I Made DaemonV"
 date: "2026-08-16"
 excerpt: "Why tf I needed DaemonV"
 ---
-```
 
 Well, one night I was thinking about how TF I was destroying my life, probably around February.
 
