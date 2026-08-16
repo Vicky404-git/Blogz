@@ -123,5 +123,5 @@ Bye guys.
 
 If you wanna check the repo:
 
-https://github.com/Vicky404-git/DaemonV
+[DaemonV on GitHub](https://github.com/Vicky404-git/DaemonV)
 
