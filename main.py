@@ -25,13 +25,21 @@ app.add_middleware(
 )
 
 
-CONTENT_DIR = "./content"
+CONTENT_DIR = os.path.realpath("./content")
+
+
+def safe_resolve(relative_path: str) -> str:
+    """Resolve a path under CONTENT_DIR and prevent directory traversal."""
+    resolved = os.path.realpath(os.path.join(CONTENT_DIR, relative_path))
+    if not resolved.startswith(CONTENT_DIR + os.sep) and resolved != CONTENT_DIR:
+        raise HTTPException(status_code=400, detail="Invalid path")
+    return resolved
 
 
 def parse_post(filename: str, include_content: bool = False):
     """Read a Markdown post and return its frontmatter + optional content."""
 
-    path = os.path.join(CONTENT_DIR, filename)
+    path = safe_resolve(filename)
 
     if not os.path.exists(path):
         raise HTTPException(
@@ -70,29 +78,38 @@ def parse_post(filename: str, include_content: bool = False):
 def get_all_posts():
     """
     Return metadata for all blog posts.
-    Content is not included on the homepage.
+    Recursively scans content/ for .md files.
     """
 
     if not os.path.exists(CONTENT_DIR):
         return []
 
-    files = sorted(
-        file
-        for file in os.listdir(CONTENT_DIR)
-        if file.endswith(".md")
-    )
+    md_files = []
+    for root, _, files in os.walk(CONTENT_DIR):
+        for file in files:
+            if file.endswith(".md"):
+                full_path = os.path.join(root, file)
+                relative = os.path.relpath(full_path, CONTENT_DIR)
+                md_files.append(relative)
 
-    return [
-        parse_post(filename, include_content=False)
-        for filename in files
-    ]
+    md_files.sort()
+
+    results = []
+    for filename in md_files:
+        try:
+            results.append(parse_post(filename, include_content=False))
+        except HTTPException:
+            continue
+
+    return results
 
 
-@app.get("/api/posts/{slug}")
+@app.get("/api/posts/{slug:path}")
 def get_single_post(slug: str):
     """
     Return a complete blog post.
     All posts are publicly available.
+    Supports slugs with / for category paths.
     """
 
     filename = f"{slug}.md"

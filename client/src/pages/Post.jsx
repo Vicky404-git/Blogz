@@ -3,7 +3,8 @@ import { useParams, Link } from 'react-router-dom'
 import Markdown from 'react-markdown'
 
 export default function Post() {
-  const { slug } = useParams()
+  const params = useParams()
+  const slug = params["*"]
   const [post, setPost] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
