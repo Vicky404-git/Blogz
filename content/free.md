@@ -1,8 +1,6 @@
 ---
 title: "The Time I Almost Nuked My Desktop Environment"
 date: "2026-07-04"
-premium: false
-price: 0
 excerpt: "A funny story about wrestling with Wayland config files at 3 AM."
 ---
 
