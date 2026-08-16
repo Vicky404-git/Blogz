@@ -7,7 +7,8 @@ export default function Home() {
   const [error, setError] = useState(false)
 
   useEffect(() => {
-    fetch('/api/posts')
+    const API_URL = import.meta.env.VITE_API_URL || ''
+    fetch(`${API_URL}/api/posts`)
       .then((r) => r.json())
       .then((data) => {
         setPosts(data)

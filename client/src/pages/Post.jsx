@@ -10,7 +10,8 @@ export default function Post() {
   const [error, setError] = useState(false)
 
   useEffect(() => {
-    fetch(`/api/posts/${slug}`)
+    const API_URL = import.meta.env.VITE_API_URL || ''
+    fetch(`${API_URL}/api/posts/${slug}`)
       .then((r) => {
         if (!r.ok) throw new Error()
         return r.json()
