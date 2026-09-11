@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
-export default function Home() {
+export default function Home({ selectedCategory }) {
   const [posts, setPosts] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
@@ -20,6 +20,10 @@ export default function Home() {
       })
   }, [])
 
+  const visiblePosts = selectedCategory
+    ? posts.filter((post) => post.slug.startsWith(`${selectedCategory}/`))
+    : posts
+
   return (
     <>
       <div className="terminal-box mb-10">
@@ -31,7 +35,7 @@ export default function Home() {
       </div>
 
       <h2 className="text-2xl text-term-accent font-normal mb-6 border-b border-dashed border-term-border inline-block pb-1">
-        ~/posts
+        {selectedCategory ? `~/posts/${selectedCategory}` : '~/posts'}
       </h2>
 
       {loading && (
@@ -42,13 +46,13 @@ export default function Home() {
         <p className="text-term-dim">Couldn't load posts.</p>
       )}
 
-      {!loading && !error && posts.length === 0 && (
+      {!loading && !error && visiblePosts.length === 0 && (
         <p className="text-term-dim">No posts yet.</p>
       )}
 
-      {!loading && !error && posts.length > 0 && (
+      {!loading && !error && visiblePosts.length > 0 && (
         <div className="space-y-0">
-          {posts.map((post, i) => (
+          {visiblePosts.map((post) => (
             <Link
               key={post.slug}
               to={`/post/${post.slug}`}
