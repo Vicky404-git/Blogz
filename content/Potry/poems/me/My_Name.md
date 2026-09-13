@@ -1,10 +1,11 @@
 ---
-title: "Poem of My name"
+title: "My name"
 date: "Unknown"
 excerpt: "Jst a poem of my name ."
 ---
 
-```My name is an Irony
+```
+My name is an Irony
 Dressed in hope, but worn by agony.
 They call me Vikas, a sweet melody—
 But is there any development left in me?
@@ -15,4 +16,5 @@ They say names shape fate,
 But mine? Just letters on a gate.
 
 Every birthday’s a reminder —
-Of a map with no direction, just a wanderer, no guide star brighter```
+Of a map with no direction, just a wanderer, no guide star brighter
+```

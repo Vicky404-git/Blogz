@@ -4,7 +4,8 @@ date: "Unknown"
 excerpt: "Sins of Mine"
 ---
 
-```how can i love someone &vice versa,
+```
+how can i love someone &vice versa,
 if i cant even control lust 
 
 how can i move forward 
@@ -20,4 +21,5 @@ how can i be a nice human
 if my pride of my work takes over 
 
 how can i be a giver if my greed comes on..... 
-as in all these questions its about "I"```
+as in all these questions its about "I"
+```

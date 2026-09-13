@@ -4,7 +4,8 @@ date: "Unknown"
 excerpt: "who am I and what I aim"
 ---
 
-```WHY
+```
+WHY
 WHY am I so obsessed with something I can't get 
 Even if I try I can't get it in this lyf yet 
 
@@ -18,4 +19,5 @@ I want to be a man
 Yet who am I...
 Lost in doubt, just asking why
 But I move forward
-As I believe I CAN TRY```
+As I believe I CAN TRY
+```
